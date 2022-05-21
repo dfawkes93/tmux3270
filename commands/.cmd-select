@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "Script($TERM3270/commands/$(ls "$TERM3270/commands" | tr '' '\n' | fzf --info=hidden))" | $TERM3270/util/3270if.sh

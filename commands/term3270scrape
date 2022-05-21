@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$TERM3270/panels/breaksplit.sh "x3270if -p $(ps -a | rg c3270 | awk {'print $1'}) ascii | vim -"

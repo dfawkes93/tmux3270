@@ -1,0 +1,8 @@
+#!/bin/sh 
+tmux setenv TERM3270 $TERM3270
+$(tmux display-menu -T "#[align=centre fg=green]C3270" -x R -y P \
+    "Find"  f   "run \"$TERM3270/panels/popup.sh term3270find\"" \
+    "Scrape" s  "run $TERM3270/commands/term3270scrape" \
+    "Rejoin" r  "run $TERM3270/panels/rejoin.sh" \
+    "Quit"   q  "run \"echo 'quit' | $TERM3270/util/3270if.sh\""
+)

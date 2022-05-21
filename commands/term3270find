@@ -1,0 +1,12 @@
+#!/bin/sh
+
+thepid=`ps -a | rg c3270 | awk {'print $1'}`
+ascii=`x3270if -p $thepid ascii()`
+fzfound=`echo "$ascii" | nl | fzf --with-nth 2.. --print-query --reverse`
+query=`echo "$fzfound" | awk 'NR==1{print $1}'`
+line=`echo "$fzfound" | awk 'NR==2{print $1}'`
+offset=`echo "$ascii" | awk "NR==${line}" | rg -b -i -o $query | awk -F ":" '{print $1}'`
+line=$((line-1))
+x3270if -p $thepid "MoveCursor($line,$offset)"
+unset thepid ascii fzfound query line offset
+return 0;
